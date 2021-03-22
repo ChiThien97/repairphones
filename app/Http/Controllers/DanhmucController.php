@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Danhmuc;
+use App\Models\Dichvu; 
 
 class DanhmucController extends Controller
 {
@@ -17,7 +18,9 @@ class DanhmucController extends Controller
     {
         //
         $danhmucs = Danhmuc::all();
-        return view('danhmuc.listCate')->with('danhmucs', $danhmucs);
+        $dichvus = Dichvu::all();
+        return view('danhmuc.listCate')->with('danhmucs', $danhmucs)
+                                         ->with('dichvus',$dichvus);
     }
 
     /**
@@ -39,13 +42,21 @@ class DanhmucController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+  
+        $imageName = $request->image->getClientOriginalName();
+        $request->image->move(public_path('images'), $imageName);
         //
         $danhmuc = new Danhmuc;
         $danhmuc->name_cate = $request->nameCate;
         $danhmuc->description = $request->description;
+        $danhmuc->image = $imageName;
         $danhmuc->save();
-        return redirect()->route('danh-muc.index')->with('message','Thêm danh mục thành công');
-
+        return back()
+        ->with('success','Thêm danh mục thành công')
+        ->with('image',$imageName);
     }
 
     /**
@@ -57,7 +68,12 @@ class DanhmucController extends Controller
     public function show($id)
     {
         //
-        
+        $danhmucs = Danhmuc::all();
+        $dichvus = Dichvu::all();
+        $danhmuc = Danhmuc::findOrFail($id);
+        return view('danhmuc.showCate')->with('danhmuc',$danhmuc)
+                                        ->with('danhmucs', $danhmucs)
+                                        ->with('dichvus',$dichvus);
     }
 
     /**
@@ -69,6 +85,7 @@ class DanhmucController extends Controller
     public function edit($id)
     {
         //
+        return view('danhmuc.editCate');
     }
 
     /**
@@ -81,6 +98,21 @@ class DanhmucController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+  
+        $imageName = $request->image->getClientOriginalName();
+        $request->image->move(public_path('images'), $imageName);
+        //
+        $danhmuc = new Danhmuc;
+        $danhmuc->name_cate = $request->nameCate;
+        $danhmuc->description = $request->description;
+        $danhmuc->image = $imageName;
+        $danhmuc->save();
+        return back()
+        ->with('success','Thêm danh mục thành công')
+        ->with('image',$imageName);
     }
 
     /**

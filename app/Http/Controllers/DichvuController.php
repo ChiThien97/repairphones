@@ -18,8 +18,10 @@ class DichvuController extends Controller
     public function index()
     {
         //
-        $dichvus = Dichvu::paginate(2);
-        return view('dichvu.listService')->with('dichvus', $dichvus);
+        $dichvus = Dichvu::paginate(5);
+        $danhmucs = Danhmuc::all();
+        return view('dichvu.listService')->with('dichvus', $dichvus)
+                                        ->with('danhmucs', $danhmucs);
     }
 
     /**
@@ -71,6 +73,7 @@ class DichvuController extends Controller
     public function show($id)
     {
         //
+        
     }
 
     /**

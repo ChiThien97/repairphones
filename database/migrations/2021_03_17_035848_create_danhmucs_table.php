@@ -17,6 +17,7 @@ class CreateDanhmucsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name_cate');
             $table->string('description');
+            $table->string('image');
             $table->timestamps();
         });
     }

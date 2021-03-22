@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Danhmuc; 
+use App\Models\Dichvu; 
 
 class HomeController2 extends Controller
 {
@@ -17,6 +18,8 @@ class HomeController2 extends Controller
     public function index()
     {
         $danhmucs = Danhmuc::all();
-        return view('home-2')->with('danhmuc',$danhmucs);
+        $dichvus = Dichvu::all();
+        return view('home-2')->with('danhmucs',$danhmucs)
+                             ->with('dichvus',$dichvus);
     }
 }

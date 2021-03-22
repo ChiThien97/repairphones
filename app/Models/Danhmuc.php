@@ -8,6 +8,6 @@ class Danhmuc extends Model
 {
     //
     protected $fillable = [
-        'id', 'name_cate', 'description',
+        'id', 'name_cate', 'description','image',
     ];
 }

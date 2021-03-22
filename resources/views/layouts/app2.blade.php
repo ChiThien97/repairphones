@@ -43,16 +43,18 @@
                                 Danh mục
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Danh mục 1</a>
-                                <a class="dropdown-item" href="#">Danh mục 2</a>
+                                @foreach( $danhmucs as $danhmuc)
+                                <a class="dropdown-item" href="#">{{ $danhmuc->name_cate }}</a>
+                                @endforeach
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Dịch vụ
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Dịch vụ 1</a>
-                                <a class="dropdown-item" href="#">Dịch vụ 2</a>
+                                @foreach( $dichvus as $dichvu)
+                                <a class="dropdown-item" href="#">{{ $dichvu->name_service }}</a>
+                                @endforeach
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#"> Chính sách </a>

@@ -16,8 +16,8 @@ class CreateDichvusTable extends Migration
         Schema::create('dichvus', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name_service');
-            $table->decimal('price');
-            $table->decimal('sale_price');
+            $table->double('price');
+            $table->double('sale_price');
             $table->string('description');
             $table->string('image');
             $table->integer('id_cate');
