@@ -85,7 +85,12 @@ class DanhmucController extends Controller
     public function edit($id)
     {
         //
-        return view('danhmuc.editCate');
+        $danhmucs = Danhmuc::all();
+        $dichvus = Dichvu::all();
+        $danhmuc = Danhmuc::findOrFail($id);
+        return view('danhmuc.editCate')->with('danhmuc',$danhmuc)
+                                        ->with('danhmucs', $danhmucs)
+                                        ->with('dichvus',$dichvus);
     }
 
     /**
@@ -105,13 +110,13 @@ class DanhmucController extends Controller
         $imageName = $request->image->getClientOriginalName();
         $request->image->move(public_path('images'), $imageName);
         //
-        $danhmuc = new Danhmuc;
+        $danhmuc = Danhmuc::findOrFail($id);
         $danhmuc->name_cate = $request->nameCate;
         $danhmuc->description = $request->description;
         $danhmuc->image = $imageName;
         $danhmuc->save();
         return back()
-        ->with('success','Thêm danh mục thành công')
+        ->with('success','Sửa danh mục thành công')
         ->with('image',$imageName);
     }
 

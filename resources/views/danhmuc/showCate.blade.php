@@ -4,24 +4,30 @@
 <div class="container pt-5">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card">
-                <div class="card-header d-flex">
-                    <div class="col-sm-8">
-                        <h2>{{ __('Danh sách danh mục') }}</h2>
-                    </div>
-                    <div class="col-sm-4 text-right">
-                        <a href="{{ route('danh-muc.create') }}"><button class="btn btn-primary">Thêm mới danh mục</button></a>
+            <div class="card text-center">
+                <div class="card-header">
+                    <div>
+                        <h2>{{ $danhmuc->name_cate }}</h2>
                     </div>
                 </div>
                 <div class="card-body">
-                    <h1>{{ $danhmuc->title }}</h1>
-                    <p class="lead">{{ $danhmuc->description }}</p>
-                    <hr>
-
-                    <a href="{{ route('danh-muc.index') }}" class="btn btn-info">Trở lại danh sách danh mục</a>
-                    <a href="{{ route('danh-muc.edit', $danhmuc->id) }}" class="btn btn-primary">Sửa danh mục</a>
-
-                    <div class="pull-right">
+                    <div class="card">
+                        <img class="card-img-top m-auto" style="width:40%" src="../images/{{ $danhmuc->image }}" alt="{{ $danhmuc->description }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $danhmuc->name_cate }}</h5>
+                            <p class="card-text">{{ $danhmuc->description }}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            @foreach($dichvus as $dichvu)
+                            <li class="list-group-item">
+                                <h3>{{$dichvu->name_service}}</h3>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <div class="pull-right mt-3">
+                        <a href="{{ route('danh-muc.index') }}" class="btn btn-success">Trở lại danh sách danh mục</a>
+                        <a href="{{ route('danh-muc.edit', $danhmuc->id) }}" class="btn btn-primary">Sửa danh mục</a>
                         <a href="#" class="btn btn-danger">Delete this danhmuc</a>
                     </div>
                 </div>

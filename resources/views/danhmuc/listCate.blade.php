@@ -15,21 +15,23 @@
                 </div>
                 <div class="card-body row justify-content-center">
                     @foreach($danhmucs as $danhmuc)
-                    <div class="col-md-6 card" style="width: 18rem;">
-                        <img class="card-img-top" src="./images/{{ $danhmuc->image }}" alt="{{ $danhmuc->description }}">
+                    <div class="col-md-6 card text-center">
+                        <img class="card-img-top m-auto" src="./images/{{ $danhmuc->image }}" alt="{{ $danhmuc->description }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ $danhmuc->name_cate }}</h5>
                             <p class="card-text">{{ $danhmuc->description }}</p>
                         </div>
                         <ul class="list-group list-group-flush">
                             @foreach($dichvus as $dichvu)
+                            @if($dichvu->id_cate == $danhmuc->id)
                             <li class="list-group-item">
                                 <h3>{{$dichvu->name_service}}</h3>
                             </li>
+                            @endif
                             @endforeach
                         </ul>
                         <div class="card-body">
-                            <a href="{{ route('danh-muc.show', $danhmuc->id) }}" class="btn btn-info">Xem danh mục</a>
+                            <a href="{{ route('danh-muc.show', $danhmuc->id) }}" class="btn btn-success">Xem danh mục</a>
                             <a href="{{ route('danh-muc.edit', $danhmuc->id) }}" class="btn btn-primary">Sửa danh mục</a>
                         </div>
                     </div>
