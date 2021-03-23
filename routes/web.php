@@ -25,5 +25,5 @@ Route::resource('/dich-vu', 'DichvuController');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/home-2', 'HomeController2@index')->name('home-2');
+Route::get('/home-demo', 'HomeDemoController@index')->name('home-demo');
 

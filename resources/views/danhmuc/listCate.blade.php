@@ -1,7 +1,7 @@
 @extends('layouts.app2')
 
 @section('content')
-<div class="container pt-5">
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
@@ -16,7 +16,7 @@
                 <div class="card-body row justify-content-center">
                     @foreach($danhmucs as $danhmuc)
                     <div class="col-md-6 card text-center">
-                        <img class="card-img-top m-auto" src="./images/{{ $danhmuc->image }}" alt="{{ $danhmuc->description }}">
+                        <img class="card-img-top m-auto" src="../images/{{ $danhmuc->image }}" alt="{{ $danhmuc->description }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ $danhmuc->name_cate }}</h5>
                             <p class="card-text">{{ $danhmuc->description }}</p>
@@ -38,6 +38,24 @@
                     <hr>
                     @endforeach
                 </div>
+                @if ($message = Session::get('success'))
+                <div class="alert alert-success alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>{{ $message }}</strong>
+                </div>
+                <img src="/images/{{ Session::get('image') }}">
+                @endif
+        
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <strong>Whoops!</strong> There were some problems with your input.
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

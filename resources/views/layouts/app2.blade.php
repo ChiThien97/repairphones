@@ -24,8 +24,8 @@
     <div id="app">
         <div class="navbar-main bg-white fixed-top shadow-sm">
             <div class="container">
-                <nav class="navbar navbar-expand-lg navbar-light bg-white">
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                <nav class="navbar navbar-expand-lg navbar-light bg-white p-0">
+                    <a class="navbar-brand" href="{{ url('/home-demo') }}">
                         <h2 style="color: #000;">Repair<span style="color: #ee5057;">phoneS</span></h2>
                     </a>
 
@@ -36,15 +36,15 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav m-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="#"> Trang chủ <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="{{ route('home-demo') }}"> Trang chủ <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="{{ route('danh-muc.index') }}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Danh mục
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 @foreach( $danhmucs as $danhmuc)
-                                <a class="dropdown-item" href="#">{{ $danhmuc->name_cate }}</a>
+                                <a class="dropdown-item" href="{{ route('danh-muc.show', $danhmuc->id) }}">{{ $danhmuc->name_cate }}</a>
                                 @endforeach
                             </li>
                             <li class="nav-item dropdown">
@@ -101,7 +101,7 @@
                 </nav>
             </div>
         </div>
-        <main class="py-5">
+        <main class="py-3 mt-5">
             @yield('content')
         </main>
         <!-- Footer Section Begin -->

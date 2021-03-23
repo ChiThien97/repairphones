@@ -1,7 +1,7 @@
 @extends('layouts.app2')
 
 @section('content')
-<div class="container pt-5">
+<div class="container ">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card text-center">
@@ -28,7 +28,12 @@
                     <div class="pull-right mt-3">
                         <a href="{{ route('danh-muc.index') }}" class="btn btn-success">Trở lại danh sách danh mục</a>
                         <a href="{{ route('danh-muc.edit', $danhmuc->id) }}" class="btn btn-primary">Sửa danh mục</a>
-                        <a href="#" class="btn btn-danger">Delete this danhmuc</a>
+                        
+                        <form action="{{ route('danh-muc.destroy', $danhmuc->id)}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger" type="submit">Xóa danh mục</button>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Danhmuc; 
 use App\Models\Dichvu; 
 
-class HomeController2 extends Controller
+class HomeDemoController extends Controller
 {
     //
     /**
@@ -19,7 +19,7 @@ class HomeController2 extends Controller
     {
         $danhmucs = Danhmuc::all();
         $dichvus = Dichvu::all();
-        return view('home-2')->with('danhmucs',$danhmucs)
+        return view('home-demo')->with('danhmucs',$danhmucs)
                              ->with('dichvus',$dichvus);
     }
 }

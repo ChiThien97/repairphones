@@ -19,8 +19,9 @@ class DanhmucController extends Controller
         //
         $danhmucs = Danhmuc::all();
         $dichvus = Dichvu::all();
-        return view('danhmuc.listCate')->with('danhmucs', $danhmucs)
-                                         ->with('dichvus',$dichvus);
+        return view('danhmuc.listCate')
+        ->with('danhmucs', $danhmucs)
+        ->with('dichvus',$dichvus);
     }
 
     /**
@@ -31,7 +32,11 @@ class DanhmucController extends Controller
     public function create()
     {
         //
-        return view('danhmuc.createCate');
+        $danhmucs = Danhmuc::all();
+        $dichvus = Dichvu::all();
+        return view('danhmuc.createCate')
+        ->with('danhmucs', $danhmucs)
+        ->with('dichvus',$dichvus);
     }
 
     /**
@@ -71,9 +76,10 @@ class DanhmucController extends Controller
         $danhmucs = Danhmuc::all();
         $dichvus = Dichvu::all();
         $danhmuc = Danhmuc::findOrFail($id);
-        return view('danhmuc.showCate')->with('danhmuc',$danhmuc)
-                                        ->with('danhmucs', $danhmucs)
-                                        ->with('dichvus',$dichvus);
+        return view('danhmuc.showCate')
+        ->with('danhmuc',$danhmuc)
+        ->with('danhmucs', $danhmucs)
+        ->with('dichvus',$dichvus);
     }
 
     /**
@@ -88,9 +94,10 @@ class DanhmucController extends Controller
         $danhmucs = Danhmuc::all();
         $dichvus = Dichvu::all();
         $danhmuc = Danhmuc::findOrFail($id);
-        return view('danhmuc.editCate')->with('danhmuc',$danhmuc)
-                                        ->with('danhmucs', $danhmucs)
-                                        ->with('dichvus',$dichvus);
+        return view('danhmuc.editCate')
+        ->with('danhmuc',$danhmuc)
+        ->with('danhmucs', $danhmucs)
+        ->with('dichvus',$dichvus);
     }
 
     /**
@@ -129,5 +136,14 @@ class DanhmucController extends Controller
     public function destroy($id)
     {
         //
+        $danhmuc = Danhmuc::findOrFail($id);
+
+        $danhmuc->delete();
+        $danhmucs = Danhmuc::all();
+        $dichvus = Dichvu::all();
+        return view('danhmuc.listCate')
+        ->with('success','Xóa danh mục thành công')
+        ->with('danhmucs', $danhmucs)
+        ->with('dichvus',$dichvus);
     }
 }
