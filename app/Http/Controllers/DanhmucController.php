@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 use App\Models\Danhmuc;
@@ -139,7 +139,7 @@ class DanhmucController extends Controller
         $danhmuc = Danhmuc::findOrFail($id);
         $id_danhmuc = DB::table('dichvus')->where('id_cate', $id)->first();
         if($id_danhmuc){
-            return back()->with('success','Xóa danh mục thất bại');
+            return back()->with('fail','Xóa danh mục thất bại');
         }
         else{
             $danhmuc->delete();
