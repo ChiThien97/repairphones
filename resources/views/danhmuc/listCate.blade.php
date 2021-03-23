@@ -14,36 +14,57 @@
                     </div>
                 </div>
                 <div class="card-body row justify-content-center">
-                    @foreach($danhmucs as $danhmuc)
-                    <div class="col-md-6 card text-center">
-                        <img class="card-img-top m-auto" src="../images/{{ $danhmuc->image }}" alt="{{ $danhmuc->description }}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $danhmuc->name_cate }}</h5>
-                            <p class="card-text">{{ $danhmuc->description }}</p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            @foreach($dichvus as $dichvu)
-                            @if($dichvu->id_cate == $danhmuc->id)
-                            <li class="list-group-item">
-                                <h3>{{$dichvu->name_service}}</h3>
-                            </li>
-                            @endif
-                            @endforeach
-                        </ul>
-                        <div class="card-body">
-                            <a href="{{ route('danh-muc.show', $danhmuc->id) }}" class="btn btn-success">Xem danh mục</a>
-                            <a href="{{ route('danh-muc.edit', $danhmuc->id) }}" class="btn btn-primary">Sửa danh mục</a>
+                    <div class="container mt-3">
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table table-hover table-bordered">
+                                    <thead>
+                                    <tr class="text-center">
+                                        <th scope="col" class="">#</th>
+                                        <th scope="col" class="">Title</th>
+                                        <th scope="col" class="">Description</th>
+                                        <th scope="col" class="">Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($danhmucs as $danhmuc)
+                                    <tr class="text-center">
+                                        <th scope="row">{{$danhmuc->id}}</th>
+                                        <td>{{$danhmuc->name_cate}}</td>
+                                        <td>{{$danhmuc->description}}</td>
+                                        <td class="d-flex align-items-center justify-content-around">
+                                        <form action="{{route('danh-muc.show',$danhmuc->id)}}" method="get">
+                                            <button class="btn btn-md btn-success rounded-5">
+                                            Show
+                                            </button>
+                                        </form>
+                                        <form action="{{route('danh-muc.edit',$danhmuc->id)}}" method="get">
+                                            <button class="btn btn-md btn-primary rounded-5">
+                                            Edit
+                                            </button>
+                                        </form>
+                                        <form action="{{route('danh-muc.destroy',$danhmuc->id)}}" method="post">
+                                            <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                            <input type="hidden" name="_method" value="delete">
+                                            <button class="btn btn-md btn-danger rounded-5">
+                                            Delete
+                                            </button>
+                                        </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                                <div class="d-flex justify-content-center">{{$danhmucs->links()}}</div>
+                            </div>
                         </div>
                     </div>
-                    <hr>
-                    @endforeach
                 </div>
                 @if ($message = Session::get('success'))
                 <div class="alert alert-success alert-block">
                     <button type="button" class="close" data-dismiss="alert">×</button>
                         <strong>{{ $message }}</strong>
                 </div>
-                <img src="/images/{{ Session::get('image') }}">
                 @endif
         
                 @if (count($errors) > 0)

@@ -17,7 +17,7 @@ class DanhmucController extends Controller
     public function index()
     {
         //
-        $danhmucs = Danhmuc::all();
+        $danhmucs = Danhmuc::paginate(1);
         $dichvus = Dichvu::all();
         return view('danhmuc.listCate')
         ->with('danhmucs', $danhmucs)
@@ -137,13 +137,18 @@ class DanhmucController extends Controller
     {
         //
         $danhmuc = Danhmuc::findOrFail($id);
-
-        $danhmuc->delete();
-        $danhmucs = Danhmuc::all();
-        $dichvus = Dichvu::all();
-        return view('danhmuc.listCate')
-        ->with('success','Xóa danh mục thành công')
-        ->with('danhmucs', $danhmucs)
-        ->with('dichvus',$dichvus);
+        $id_danhmuc = DB::table('dichvus')->where('id_cate', $id)->first();
+        if($id_danhmuc){
+            return back()->with('success','Xóa danh mục thất bại');
+        }
+        else{
+            $danhmuc->delete();
+            $danhmucs = Danhmuc::all();
+            $dichvus = Dichvu::all();
+            return view('danhmuc.listCate')
+            ->with('success','Xóa danh mục thành công')
+            ->with('danhmucs', $danhmucs)
+            ->with('dichvus',$dichvus);
+        }
     }
 }

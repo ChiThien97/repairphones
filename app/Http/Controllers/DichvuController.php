@@ -20,8 +20,9 @@ class DichvuController extends Controller
         //
         $dichvus = Dichvu::paginate(5);
         $danhmucs = Danhmuc::all();
-        return view('dichvu.listService')->with('dichvus', $dichvus)
-                                        ->with('danhmucs', $danhmucs);
+        return view('dichvu.listService')
+        ->with('dichvus', $dichvus)
+        ->with('danhmucs', $danhmucs);
     }
 
     /**
@@ -32,8 +33,11 @@ class DichvuController extends Controller
     public function create()
     {
         //
+        $dichvus = Dichvu::all();
         $danhmucs = Danhmuc::all();
-        return view('dichvu.createService')->with('danhmucs', $danhmucs);
+        return view('dichvu.createService')
+        ->with('danhmucs', $danhmucs)
+        ->with('dichvus',$dichvus);
     }
 
     /**
@@ -60,8 +64,8 @@ class DichvuController extends Controller
         $Dichvu->id_cate = $request->idCate;
         $Dichvu->save();
         return back()
-            ->with('success','Thêm dịch vụ thành công')
-            ->with('image',$imageName);
+        ->with('success','Thêm dịch vụ thành công')
+        ->with('image',$imageName);
     }
 
     /**
@@ -73,7 +77,13 @@ class DichvuController extends Controller
     public function show($id)
     {
         //
-        
+        $danhmucs = Danhmuc::all();
+        $dichvus = Dichvu::all();
+        $dichvu = Dichvu::findOrFail($id);
+        return view('dichvu.showService')
+        ->with('dichvu',$dichvu)
+        ->with('danhmucs', $danhmucs)
+        ->with('dichvus',$dichvus);
     }
 
     /**
@@ -85,6 +95,13 @@ class DichvuController extends Controller
     public function edit($id)
     {
         //
+        $danhmucs = Danhmuc::all();
+        $dichvus = Dichvu::all();
+        $dichvu = Dichvu::findOrFail($id);
+        return view('dichvu.editService')
+        ->with('dichvu',$dichvu)
+        ->with('danhmucs', $danhmucs)
+        ->with('dichvus',$dichvus);
     }
 
     /**
@@ -97,6 +114,24 @@ class DichvuController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+  
+        $imageName = $request->image->getClientOriginalName();
+        $request->image->move(public_path('images'), $imageName);
+        //
+        $Dichvu = Dichvu::findOrFail($id);
+        $Dichvu->name_service = $request->nameService;
+        $Dichvu->price = $request->price;
+        $Dichvu->sale_price = $request->salePrice;
+        $Dichvu->description = $request->description;
+        $Dichvu->image = $imageName;
+        $Dichvu->id_cate = $request->idCate;
+        $Dichvu->save();
+        return back()
+        ->with('success','Sửa dịch vụ thành công')
+        ->with('image',$imageName);
     }
 
     /**
@@ -108,5 +143,14 @@ class DichvuController extends Controller
     public function destroy($id)
     {
         //
+        $dichvu = Dichvu::findOrFail($id);
+
+        $dichvu->delete();
+        $danhmucs = Danhmuc::all();
+        $dichvus = Dichvu::all();
+        return view('dichvu.listService')
+        ->with('success','Xóa dịch vụ thành công')
+        ->with('danhmucs', $danhmucs)
+        ->with('dichvus',$dichvus);
     }
 }

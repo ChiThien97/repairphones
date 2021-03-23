@@ -108,7 +108,7 @@
     <footer style="background-color: #31302c; color: #fff" class="footer py-2 shadow-sm">
         <div class="container py-3">
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="header__logo">
                             <a href="./index.html">
@@ -135,7 +135,7 @@
                        
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-12">
+                <div class="col-lg-3 col-md-12">
                     <div class="footer__widget">
                         <h6>Đăng kí nhận tin</h6>
                         <p>Nhập địa chỉ e-mail để nhận thông tin khuyến mại, tin tức một cách sớm nhất</p>

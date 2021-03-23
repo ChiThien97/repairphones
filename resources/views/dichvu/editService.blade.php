@@ -5,43 +5,48 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"><h3>{{ __('Thêm dịch vụ mới') }}</h3></div>
+                <div class="card-header"><h3>{{ __('Sửa dịch vụ') }}</h3></div>
                 <div class="card-body">
-                    <form action="{{ route('dich-vu.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('dich-vu.update' , $dichvu->id) }}" method="POST" enctype="multipart/form-data">
                     <!--Tạo token để chống tấn công CSRF (Cross-site Request Forgery)-->
+                    @method('PATCH')
                     @csrf 
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label" for="category-list">Danh mục</label>
                             
                             <select name="idCate" style="margin-left:15px !important" class="col-sm-8 custom-select" id="category-list">
-                                <option selected>--Chọn danh mục--</option>
+                               
                                 @foreach($danhmucs as $danhmuc)
+                                @if($danhmuc->id == $dichvu->id_cate)
+                                <option value="{{ $danhmuc->id }}" selected>{{ $danhmuc->name_cate }}</option>
+                                @else
                                 <option value="{{ $danhmuc->id }}">{{ $danhmuc->name_cate }}</option>
+                                @endif
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group row">
                             <label for="nameService" class="col-sm-3 col-form-label">Tên dịch vụ</label>
                             <div class="col-sm-9">
-                                <input name="nameService" type="text" class="form-control" id="nameService" placeholder="VD: Sửa chữa điện thoại ...">
+                                <input name="nameService" type="text" class="form-control" id="nameService" value="{{ $dichvu->name_service }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="price" class="col-sm-3 col-form-label">Giá niêm yết</label>
                             <div class="col-sm-9">
-                                <input name="price" type="text" class="form-control" id="price" placeholder="xxx,xxx VNĐ">
+                                <input name="price" type="text" class="form-control" id="price" value="{{ $dichvu->price }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="salePrice" class="col-sm-3 col-form-label">Giá khuyến mại</label>
                             <div class="col-sm-9">
-                                <input name="salePrice" type="text" class="form-control" id="salePrice" placeholder="xxx,xxx VNĐ">
+                                <input name="salePrice" type="text" class="form-control" id="salePrice" value="{{ $dichvu->sale_price }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="description" class="col-sm-3 col-form-label">Mô tả</label>
                             <div class="col-sm-9">
-                                <textarea name="description" class="form-control" id="description" placeholder="Nhập mô tả  vào đây ..."></textarea>
+                                <textarea name="description" class="form-control" id="description">{{ $dichvu->description }}</textarea>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -52,16 +57,17 @@
                         </div>
                         <div class="form-group row justify-content-center">
                             <div class="col-sm-3">
-                                <button type="submit" class="btn btn-primary">Thêm dịch vụ</button>
+                                <button type="submit" class="btn btn-primary">Sửa dịch vụ</button>
                             </div>
                         </div>
                     </form>
                     @if ($message = Session::get('success'))
-                    <div class="alert alert-success alert-block">
+                    <div class="alert alert-success alert-block text-center">
                         <button type="button" class="close" data-dismiss="alert">×</button>
                             <strong>{{ $message }}</strong>
+                            <img src="/images/{{ Session::get('image') }}">
                     </div>
-                    <img src="../images/{{ Session::get('image') }}">
+                    
                     @endif
             
                     @if (count($errors) > 0)
