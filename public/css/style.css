@@ -9,20 +9,89 @@ ul, ol {
     margin: 0;
 }
 
+.section-title {
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.section-title h2 {
+	color: #1c1c1c;
+	font-weight: 500;
+	position: relative;
+}
+
+.section-title h2:after {
+	position: absolute;
+	left: 0;
+	bottom: -5px;
+	right: 0;
+	height: 2px;
+	width: 150px;
+	background: #FF6145;
+	content: "";
+	margin: 0 auto;
+}
+
+/*---------------------
+  Categories
+-----------------------*/
+
+.categories__item {
+	height: 270px;
+	position: relative;
+}
+
+.categories__item h5 {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	padding: 0 20px;
+	bottom: 20px;
+	text-align: center;
+}
+
+.categories__item h5 a {
+	font-size: 18px;
+	color: #1c1c1c;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	padding: 12px 0 10px;
+	background: #ffffff;
+	display: block;
+}
+
+.categories__slider .col-lg-3 {
+	max-width: 100%;
+}
+
+.categories__slider.owl-carousel .owl-nav button {
+	font-size: 18px;
+	color: #1c1c1c;
+	height: 70px;
+	width: 30px;
+	line-height: 70px;
+	text-align: center;
+	border: 1px solid #ebebeb;
+	position: absolute;
+	left: -35px;
+	top: 50%;
+	-webkit-transform: translateY(-35px);
+	background: #ffffff;
+}
+
+.categories__slider.owl-carousel .owl-nav button.owl-next {
+	left: auto;
+	right: -35px;
+}
 
 /*--Footer Style--*/
-.footer__about {
-    margin-bottom: 30px;
-}
+
 .footer__about ul li {
     font-size: 14px;
     color: #7e7e7e;
     line-height: 36px;
     list-style: none;
-}
-.footer__widget {
-    margin-bottom: 30px;
-    overflow: hidden;
 }
 .footer__widget h6 {
     font-weight: 700;

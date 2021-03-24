@@ -22,4 +22,14 @@ class HomeDemoController extends Controller
         return view('home-demo')->with('danhmucs',$danhmucs)
                              ->with('dichvus',$dichvus);
     }
+    //
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function phancong()
+    {
+        return view('layouts.phancong');
+    }
 }

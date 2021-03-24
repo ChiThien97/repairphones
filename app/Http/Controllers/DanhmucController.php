@@ -17,11 +17,8 @@ class DanhmucController extends Controller
     public function index()
     {
         //
-        $danhmucs = Danhmuc::paginate(1);
-        $dichvus = Dichvu::all();
-        return view('danhmuc.listCate')
-        ->with('danhmucs', $danhmucs)
-        ->with('dichvus',$dichvus);
+        $danhmucs = Danhmuc::paginate(5);
+        return view('danhmuc.listCate')->with('danhmucs',$danhmucs);
     }
 
     /**
@@ -32,11 +29,7 @@ class DanhmucController extends Controller
     public function create()
     {
         //
-        $danhmucs = Danhmuc::all();
-        $dichvus = Dichvu::all();
-        return view('danhmuc.createCate')
-        ->with('danhmucs', $danhmucs)
-        ->with('dichvus',$dichvus);
+        return view('danhmuc.createCate');
     }
 
     /**
@@ -73,13 +66,9 @@ class DanhmucController extends Controller
     public function show($id)
     {
         //
-        $danhmucs = Danhmuc::all();
-        $dichvus = Dichvu::all();
         $danhmuc = Danhmuc::findOrFail($id);
         return view('danhmuc.showCate')
-        ->with('danhmuc',$danhmuc)
-        ->with('danhmucs', $danhmucs)
-        ->with('dichvus',$dichvus);
+        ->with('danhmuc',$danhmuc);
     }
 
     /**
@@ -91,13 +80,9 @@ class DanhmucController extends Controller
     public function edit($id)
     {
         //
-        $danhmucs = Danhmuc::all();
-        $dichvus = Dichvu::all();
         $danhmuc = Danhmuc::findOrFail($id);
         return view('danhmuc.editCate')
-        ->with('danhmuc',$danhmuc)
-        ->with('danhmucs', $danhmucs)
-        ->with('dichvus',$dichvus);
+        ->with('danhmuc',$danhmuc);
     }
 
     /**
@@ -110,21 +95,22 @@ class DanhmucController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-  
-        $imageName = $request->image->getClientOriginalName();
-        $request->image->move(public_path('images'), $imageName);
-        //
+        $imageName = ($request->image)?$request->image->getClientOriginalName():false;
         $danhmuc = Danhmuc::findOrFail($id);
         $danhmuc->name_cate = $request->nameCate;
         $danhmuc->description = $request->description;
-        $danhmuc->image = $imageName;
+        if($imageName){
+            $danhmuc->image = $imageName;
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            $request->image->move(public_path('images'), $imageName);
+            //
+        }
         $danhmuc->save();
         return back()
         ->with('success','Sửa danh mục thành công')
-        ->with('image',$imageName);
+        ->with('image',($imageName)?$imageName:'Không có thay đổi hình ảnh');
     }
 
     /**
@@ -143,12 +129,8 @@ class DanhmucController extends Controller
         }
         else{
             $danhmuc->delete();
-            $danhmucs = Danhmuc::all();
-            $dichvus = Dichvu::all();
             return view('danhmuc.listCate')
-            ->with('success','Xóa danh mục thành công')
-            ->with('danhmucs', $danhmucs)
-            ->with('dichvus',$dichvus);
+            ->with('success','Xóa danh mục thành công');
         }
     }
 }

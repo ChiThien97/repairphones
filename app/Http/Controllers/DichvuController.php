@@ -19,10 +19,8 @@ class DichvuController extends Controller
     {
         //
         $dichvus = Dichvu::paginate(5);
-        $danhmucs = Danhmuc::all();
         return view('dichvu.listService')
-        ->with('dichvus', $dichvus)
-        ->with('danhmucs', $danhmucs);
+        ->with('dichvus', $dichvus);
     }
 
     /**
@@ -33,11 +31,7 @@ class DichvuController extends Controller
     public function create()
     {
         //
-        $dichvus = Dichvu::all();
-        $danhmucs = Danhmuc::all();
-        return view('dichvu.createService')
-        ->with('danhmucs', $danhmucs)
-        ->with('dichvus',$dichvus);
+        return view('dichvu.createService');
     }
 
     /**
@@ -77,13 +71,9 @@ class DichvuController extends Controller
     public function show($id)
     {
         //
-        $danhmucs = Danhmuc::all();
-        $dichvus = Dichvu::all();
         $dichvu = Dichvu::findOrFail($id);
         return view('dichvu.showService')
-        ->with('dichvu',$dichvu)
-        ->with('danhmucs', $danhmucs)
-        ->with('dichvus',$dichvus);
+        ->with('dichvu',$dichvu);
     }
 
     /**
@@ -95,13 +85,9 @@ class DichvuController extends Controller
     public function edit($id)
     {
         //
-        $danhmucs = Danhmuc::all();
-        $dichvus = Dichvu::all();
         $dichvu = Dichvu::findOrFail($id);
         return view('dichvu.editService')
-        ->with('dichvu',$dichvu)
-        ->with('danhmucs', $danhmucs)
-        ->with('dichvus',$dichvus);
+        ->with('dichvu',$dichvu);
     }
 
     /**
@@ -146,11 +132,7 @@ class DichvuController extends Controller
         $dichvu = Dichvu::findOrFail($id);
 
         $dichvu->delete();
-        $danhmucs = Danhmuc::all();
-        $dichvus = Dichvu::all();
         return view('dichvu.listService')
-        ->with('success','Xóa dịch vụ thành công')
-        ->with('danhmucs', $danhmucs)
-        ->with('dichvus',$dichvus);
+        ->with('success','Xóa dịch vụ thành công');
     }
 }

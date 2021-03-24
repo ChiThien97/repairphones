@@ -1,4 +1,4 @@
-@extends('layouts.app2')
+@extends('layouts.app-demo')
 
 @section('content')
 <div class="container">
@@ -30,14 +30,9 @@
                                     @foreach($danhmucs as $danhmuc)
                                     <tr class="text-center">
                                         <th scope="row">{{$danhmuc->id}}</th>
-                                        <td>{{$danhmuc->name_cate}}</td>
+                                        <td><a href="{{route('danh-muc.show',$danhmuc->id)}}">{{$danhmuc->name_cate}}</a></td>
                                         <td>{{$danhmuc->description}}</td>
                                         <td class="d-flex align-items-center justify-content-around">
-                                        <form action="{{route('danh-muc.show',$danhmuc->id)}}" method="get">
-                                            <button class="btn btn-md btn-success rounded-5">
-                                            Show
-                                            </button>
-                                        </form>
                                         <form action="{{route('danh-muc.edit',$danhmuc->id)}}" method="get">
                                             <button class="btn btn-md btn-primary rounded-5">
                                             Edit

@@ -1,4 +1,4 @@
-@extends('layouts.app2')
+@extends('layouts.app-demo')
 
 @section('content')
 <div class="container">
@@ -25,8 +25,14 @@
                         </div>
                         <div class="form-group row">
                             <label for="file-image" class="col-sm-3 col-form-label">Ảnh danh mục</label>
-                            <div style="margin-left:15px !important" class="col-sm-8 custom-file">
-                                <input name="image" type="file" class="custom-filt" id="file-image" value="{{ $danhmuc->description }}">
+                            <div class="col-sm-8 " id="file-image">
+                                <div class="row">
+                                    <a class="btn btn-sm btn-warning col-sm-3" data-toggle="collapse" data-target="#hinhanh">Sửa ảnh</a>
+                                    <p class="col-sm-9">{{ $danhmuc->image }}</p>
+                                </div>
+                                <div id="hinhanh" style="margin-left:15px !important" class="collapse custom-file">
+                                    <input name="image" type="file" class="custom-filt"  value="/images/{{ $danhmuc->image }}">
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row justify-content-center">
@@ -40,7 +46,11 @@
                         <button type="button" class="close" data-dismiss="alert">×</button>
                             <strong>{{ $message }}</strong>
                     </div>
+                    @if( Session::get('image') == 'Không có thay đổi hình ảnh')
+                    <p>{{ Session::get('image') }}</p>
+                    @else
                     <img src="/images/{{ Session::get('image') }}">
+                    @endif
                     @endif
             
                     @if (count($errors) > 0)
