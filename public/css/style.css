@@ -22,14 +22,14 @@ ul, ol {
 
 .section-title h2:after {
 	position: absolute;
-	left: 0;
-	bottom: -5px;
-	right: 0;
-	height: 2px;
-	width: 150px;
-	background: #FF6145;
-	content: "";
-	margin: 0 auto;
+    left: -10px;
+    bottom: 3px;
+    right: 0;
+    height: 30px;
+    width: 5px;
+    background: #FF6145;
+    content: "";
+    margin: auto 0;
 }
 
 /*---------------------
@@ -37,7 +37,6 @@ ul, ol {
 -----------------------*/
 
 .categories__item {
-	height: 270px;
 	position: relative;
 }
 
@@ -46,19 +45,28 @@ ul, ol {
 	left: 0;
 	width: 100%;
 	padding: 0 20px;
-	bottom: 20px;
+	bottom: 0px;
 	text-align: center;
+	transition: 0.5s;
+}
+
+.categories__item:hover h5 {
+	bottom: 10px;
+	
 }
 
 .categories__item h5 a {
 	font-size: 18px;
-	color: #1c1c1c;
 	font-weight: 700;
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	padding: 12px 0 10px;
-	background: #ffffff;
+	background: rgba(255, 255, 255, 0.8);;
 	display: block;
+}
+
+.categories__item h5 a span {
+	color: #000;
 }
 
 .categories__slider .col-lg-3 {
