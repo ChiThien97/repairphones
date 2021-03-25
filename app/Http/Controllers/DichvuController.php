@@ -100,19 +100,23 @@ class DichvuController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-  
-        $imageName = $request->image->getClientOriginalName();
-        $request->image->move(public_path('images'), $imageName);
+        $imageName = ($request->image)?$request->image->getClientOriginalName():false;
         //
         $Dichvu = Dichvu::findOrFail($id);
         $Dichvu->name_service = $request->nameService;
         $Dichvu->price = $request->price;
-        $Dichvu->sale_price = $request->salePrice;
+        $Dichvu->sale_price =  ($request->salePrice)?$request->salePrice:'0';
         $Dichvu->description = $request->description;
-        $Dichvu->image = $imageName;
+
+        if($imageName){
+            $Dichvu->image = $imageName;
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            $request->image->move(public_path('images'), $imageName);
+            //
+        }
+
         $Dichvu->id_cate = $request->idCate;
         $Dichvu->save();
         return back()

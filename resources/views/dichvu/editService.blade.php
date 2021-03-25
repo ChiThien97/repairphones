@@ -52,7 +52,7 @@
                         <div class="form-group row">
                             <label for="file-image" class="col-sm-3 col-form-label">Ảnh dịch vụ</label>
                             <div style="margin-left:15px !important" class="col-sm-8 custom-file">
-                                <input name="image" type="file" class="custom-filt" id="file-image" required>
+                                <input name="image" type="file" class="custom-filt" id="file-image" value="/images/{{ $dichvu->image }}">
                             </div>
                         </div>
                         <div class="form-group row justify-content-center">
@@ -67,7 +67,11 @@
                             <strong>{{ $message }}</strong>
                             <img src="/images/{{ Session::get('image') }}">
                     </div>
-                    
+                    @if( Session::get('image') == 'Không có thay đổi hình ảnh')
+                    <p>{{ Session::get('image') }}</p>
+                    @else
+                    <img src="/images/{{ Session::get('image') }}">
+                    @endif
                     @endif
             
                     @if (count($errors) > 0)

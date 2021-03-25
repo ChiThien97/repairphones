@@ -37,16 +37,17 @@
     <!-- Categories Section Begin -->
     <section class="categories">
         <div class="container">
-            <div class="section-title text-left mt-5">
-                <h2 class="text-uppercase">Danh mục sửa chữa</h2>
+            <div class="section-title d-flex justify-content-between mt-5">
+                <h2 class="text-uppercase mt-2 mb-0">Danh mục sửa chữa</h2>
+                <a href="{{ route('danh-muc.index') }}" class="btn btn-dark d-flex align-items-center">Xem thêm &nbsp;<i class="fas fa-arrow-right"></i></a>
             </div>
             <div class="row">
                 @foreach($danhmucs as $danhmuc)
-                <div class="col-lg-3 col-md-6 col-sm-6 justify-content-center categories__item">
+                <div class="px-2 my-2 col-lg-3 col-md-3 col-sm-4 justify-content-center categories__item">
                     <img  src="images/{{$danhmuc->image}}" alt="" class="img-thumbnail">
                     <h5 class="text-center">
                         <a href="{{route('danh-muc.show',$danhmuc->id)}}">
-                        <span><?php $danhmuc->name_cate = substr($danhmuc->name_cate, 12, strlen($danhmuc->name_cate)); echo $danhmuc->name_cate ?></span>
+                        <span><?php $danhmuc_name = substr($danhmuc->name_cate, 12, strlen($danhmuc->name_cate)); echo $danhmuc_name ?></span>
                         </a>
                     </h5>
                 </div>
@@ -61,14 +62,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="section-title text-left mt-5">
-                        <h2 class="text-uppercase">Sản phẩm nổi bật</h2>
+                    <div class="section-title d-flex justify-content-between mt-5">
+                        <h2 class="text-uppercase mt-2 mb-0">Sản phẩm nổi bật</h2>
+                        <a href="{{ route('dich-vu.index') }}" class="btn btn-dark d-flex align-items-center">Xem thêm &nbsp;<i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
             <div class="row">
                 @foreach($dichvus as $dichvu)
-                <div class="col-lg-3 col-md-4 col-sm-6 px-2">
+                <div class="services col-lg-3 col-md-4 col-sm-6 px-2">
                     <div class="card">
                         <a href="{{ route('dich-vu.show',$dichvu->id) }}">
                             <img class="card-img-top" src="images/{{$dichvu->image}}" alt="{{$dichvu->name_service}}">

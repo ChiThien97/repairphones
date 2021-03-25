@@ -20,7 +20,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="min-vh-100">
     <div id="app">
         <div class="navbar-main bg-white fixed-top shadow-sm">
             <div class="container">
@@ -101,12 +101,12 @@
                 </nav>
             </div>
         </div>
-        <main class="py-3 mt-5" style="min-height:550px !important">
+        <main class="py-3 mt-5 flex-grow" style="min-height:550px !important">
             @yield('content')
         </main>
         
         <!-- Footer Section Begin -->
-        <footer class="footer bg-white" style="box-shadow: 0 0 0.5rem 0.2rem rgba(0, 0, 0, 0.15) !important;">
+        <footer class="footer bg-white mt-auto" style="box-shadow: 0 0 0.5rem 0.2rem rgba(0, 0, 0, 0.15) !important;">
             <div class="container py-3">
                 <div class="row">
                     <div class="col-lg-4 col-md-6 col-sm-6">
