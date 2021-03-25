@@ -52,7 +52,7 @@ class DichvuController extends Controller
         $Dichvu = new Dichvu;
         $Dichvu->name_service = $request->nameService;
         $Dichvu->price = $request->price;
-        $Dichvu->sale_price = $request->salePrice;
+        $Dichvu->sale_price = ($request->salePrice)?$request->salePrice:'0';
         $Dichvu->description = $request->description;
         $Dichvu->image = $imageName;
         $Dichvu->id_cate = $request->idCate;

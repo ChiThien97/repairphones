@@ -64,38 +64,31 @@
                     <div class="section-title text-left mt-5">
                         <h2 class="text-uppercase">Sản phẩm nổi bật</h2>
                     </div>
-                    <div class="featured__controls">
-                        <ul>
-                            <li class="active" data-filter="*">All</li>
-                            <li data-filter=".oranges">Oranges</li>
-                            <li data-filter=".fresh-meat">Fresh Meat</li>
-                            <li data-filter=".vegetables">Vegetables</li>
-                            <li data-filter=".fastfood">Fastfood</li>
-                        </ul>
-                    </div>
                 </div>
             </div>
-            @foreach($dichvus as $dichvu)
-            <div class="row featured__filter">
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg">
-                            <img  src="images/{{$dichvu->image}}" alt="" class="img-thumbnail">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">{{ $dichvu->name_service }}</a></h6>
-                            <h5>{{ $dichvu->price }}</h5>
-                            <h5>{{ $dichvu->sale_price }}</h5>
-                        </div>
+            <div class="row">
+                @foreach($dichvus as $dichvu)
+                <div class="col-lg-3 col-md-4 col-sm-6 px-2">
+                    <div class="card">
+                        <a href="{{ route('dich-vu.show',$dichvu->id) }}">
+                            <img class="card-img-top" src="images/{{$dichvu->image}}" alt="{{$dichvu->name_service}}">
+                            <div class="card-body p-2">
+                                <h5 class="card-title text-dark">{{$dichvu->name_service}}</h5>
+                                <div class="d-flex justify-content-around">
+                                    @if($dichvu->sale_price != 0)
+                                    <h6 class="text-danger">{{ number_format($dichvu->sale_price) }} VNĐ</h6>
+                                    <h6 class="text-dark"><del>{{ number_format($dichvu->price) }} VNĐ<del></h6>
+                                    @else
+                                    <h6 class="text-danger">{{ number_format($dichvu->price) }} VNĐ</h6>
+                                    @endif
+                                </div>    
+                            </div>
+                        </a>
                     </div>
                 </div>
+                @endforeach
             </div>
-            @endforeach
+            
         </div>
     </section>
     @endsection
