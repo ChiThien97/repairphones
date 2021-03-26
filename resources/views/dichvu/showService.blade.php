@@ -1,46 +1,60 @@
 @extends('layouts.app-demo')
 
 @section('content')
-<div class="container ">
+<div class="container bg-white">
+    <nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-white">
+        <li class="breadcrumb-item"><a href="{{ route('home-demo') }}">Home</a></li>
+        <li class="breadcrumb-item">
+            <a href="{{ route('danh-muc.show',$dichvu->id_cate) }}">
+            @foreach($danhmucs as $danhmuc) 
+            @if($danhmuc->id == $dichvu->id_cate) 
+            {{ $danhmuc->name_cate }}
+            @endif
+            @endforeach
+            </a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">{{ $dichvu->name_service }}</li>
+    </ol>
+    </nav>
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card text-center">
-                <div class="card-header">
+        <div class="col-md-4 text-center">
+            <img class="m-auto" style="width:80%" src="../images/{{ $dichvu->image }}" alt="{{ $dichvu->description }}">
+        </div>
+        <div class="col-md-5">
+            <div class="text-left">
+                <div class="header">
                     <div>
                         <h2>{{ $dichvu->name_service }}</h2>
                     </div>
                 </div>
-                <div class="card-body">
-                    <div class="card">
-                        <img class="card-img-top m-auto" style="width:40%" src="../images/{{ $dichvu->image }}" alt="{{ $dichvu->description }}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $dichvu->name_service }}</h5>
-                            <p class="card-text">{{ $dichvu->description }}</p>
-                            <div class="row px-0 pt-3 justify-content-center align-items-center border-top">
-                                <div class="col-6 text-danger font-weight-bold  border-right">
-                                    {{ number_format($dichvu->sale_price) }} VNĐ
-                                </div>
-                                <div class="col-6">
-                                    <del>{{ number_format($dichvu->price) }} VNĐ </del>
-                                </div>
-                                
-                            </div>
+                <div class="body">
+                    <div class="row px-0 p-3 justify-content-start align-items-center">
+                    @if($dichvu->sale_price != 0)
+                        <div class="font-size-lg h3 text-danger font-weight-bold">
+                            {{ number_format($dichvu->sale_price) }} VNĐ
                         </div>
+                        <div class="pl-3">
+                            <del>{{ number_format($dichvu->price) }} VNĐ </del>
+                        </div>
+                    @else
+                        <div class="col-12 text-danger font-weight-bold">
+                            {{ number_format($dichvu->price) }} VNĐ
+                        </div>
+                    @endif
                     </div>
-                    <div class="pull-right mt-3">
-                        <a href="{{ route('dich-vu.index') }}" class="btn btn-success">Trở lại danh sách dịch vụ</a>
-                        <a href="{{ route('dich-vu.edit', $dichvu->id) }}" class="btn btn-primary">Sửa dịch vụ</a>
-                        
-                        <form class="mt-3" action="{{ route('dich-vu.destroy', $dichvu->id)}}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger" type="submit">Xóa dịch vụ</button>
-                        </form>
-                    </div>
+                    <h5 class="title">{{ $dichvu->name_service }}</h5>
+                    <pre class="text" style="white-space:break-spaces">{{ $dichvu->description }}</pre>
+                    <button type="submit" name="add-to-cart" class="btn btn-danger">
+                        <strong>ĐẶT LỊCH SỬA CHỮA</strong><br>
+                        <span>RepairphoneS sẽ liên hệ với quý khách trong 15 phút</span>
+                    </button>
                 </div>
             </div>
         </div>
+        <div class="col-md-3">
+            {{view('layouts.side-bar')}}
+        </div>
     </div>
 </div>
-
 @endsection

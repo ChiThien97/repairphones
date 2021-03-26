@@ -121,7 +121,7 @@ class DichvuController extends Controller
         $Dichvu->save();
         return back()
         ->with('success','Sửa dịch vụ thành công')
-        ->with('image',$imageName);
+        ->with('image',($imageName)?$imageName:'Không có thay đổi hình ảnh');
     }
 
     /**

@@ -39,6 +39,8 @@
                                             </button>
                                         </form>
                                         <form action="{{route('danh-muc.destroy',$danhmuc->id)}}" method="post">
+                                        @csrf
+                                        @method('DELETE')
                                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                                             <input type="hidden" name="_method" value="delete">
                                             <button class="btn btn-md btn-danger rounded-5">
@@ -48,9 +50,9 @@
                                         </td>
                                     </tr>
                                     @endforeach
+                                    
                                     </tbody>
                                 </table>
-                                <div class="d-flex justify-content-center">{{$danhmucs->links()}}</div>
                             </div>
                         </div>
                     </div>
@@ -60,6 +62,11 @@
                     <button type="button" class="close" data-dismiss="alert">×</button>
                         <strong>{{ $message }}</strong>
                 </div>
+                @elseif($message = Session::get('fail'))
+                    <div class="alert alert-danger alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>{{ $message }}</strong>
+                    </div>
                 @endif
         
                 @if (count($errors) > 0)

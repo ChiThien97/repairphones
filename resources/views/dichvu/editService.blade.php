@@ -62,16 +62,15 @@
                         </div>
                     </form>
                     @if ($message = Session::get('success'))
-                    <div class="alert alert-success alert-block text-center">
-                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <div class="alert alert-success alert-block text-center">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
                             <strong>{{ $message }}</strong>
+                            @if( Session::get('image') == 'Không có thay đổi hình ảnh')
+                            <p>{{ Session::get('image') }}</p>
+                            @else
                             <img src="/images/{{ Session::get('image') }}">
-                    </div>
-                    @if( Session::get('image') == 'Không có thay đổi hình ảnh')
-                    <p>{{ Session::get('image') }}</p>
-                    @else
-                    <img src="/images/{{ Session::get('image') }}">
-                    @endif
+                            @endif
+                        </div>
                     @endif
             
                     @if (count($errors) > 0)

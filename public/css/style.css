@@ -2,7 +2,10 @@
 a:hover, a:focus {
     text-decoration: none;
     outline: none;
-    color: #ffffff;
+    color: #FF6145 !important;
+}
+a{
+    color: #1c1c1c !important;
 }
 ul, ol {
     padding: 0;
@@ -107,11 +110,11 @@ ul, ol {
     -moz-transform: scale(0.9);
     -ms-transform: scale(0.9);
     -o-transform: scale(0.9);
-    transition: 0.5s;
-    -webkit-transition: 0.5s;
-    -moz-transition: 0.5s;
-    -ms-transition: 0.5s;
-    -o-transition: 0.5s;
+    transition: 1s;
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    -ms-transition: 1s;
+    -o-transition: 1s;
 }
 
 .services:hover img{

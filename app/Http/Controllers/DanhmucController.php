@@ -99,6 +99,7 @@ class DanhmucController extends Controller
         $danhmuc = Danhmuc::findOrFail($id);
         $danhmuc->name_cate = $request->nameCate;
         $danhmuc->description = $request->description;
+        
         if($imageName){
             $danhmuc->image = $imageName;
             $request->validate([
@@ -129,8 +130,7 @@ class DanhmucController extends Controller
         }
         else{
             $danhmuc->delete();
-            return view('danhmuc.listCate')
-            ->with('success','Xóa danh mục thành công');
+            return redirect('danh-muc')->with('success','Xóa danh mục thành công');
         }
     }
 }
