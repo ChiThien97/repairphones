@@ -23,9 +23,10 @@ Route::resource('/danh-muc', 'DanhmucController');
 
 Route::resource('/dich-vu', 'DichvuController');
 
+Route::resource('/don-hang', 'DatHangController');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/phan-cong', 'HomeDemoController@phancong')->name('phan-cong');
 
 Route::get('/home-demo', 'HomeDemoController@index')->name('home-demo');
-

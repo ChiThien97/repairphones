@@ -19,7 +19,7 @@
     </nav>
     <div class="row justify-content-center">
         <div class="col-md-4 text-center">
-            <img class="m-auto" style="width:80%" src="../images/{{ $dichvu->image }}" alt="{{ $dichvu->description }}">
+            <img class="m-auto w-100" src="../images/{{ $dichvu->image }}" alt="{{ $dichvu->description }}">
         </div>
         <div class="col-md-5">
             <div class="text-left">
@@ -38,13 +38,12 @@
                             <del>{{ number_format($dichvu->price) }} VNĐ </del>
                         </div>
                     @else
-                        <div class="col-12 text-danger font-weight-bold">
+                        <div class="font-size-lg h3  text-danger font-weight-bold">
                             {{ number_format($dichvu->price) }} VNĐ
                         </div>
                     @endif
                     </div>
-                    <h5 class="title">{{ $dichvu->name_service }}</h5>
-                    <pre class="text" style="white-space:break-spaces">{{ $dichvu->description }}</pre>
+                    <pre class="text" style="white-space:break-spaces; font-family: 'Nunito', sans-serif;">{{ $dichvu->description }}</pre>
                     <button type="submit" name="add-to-cart" class="btn btn-danger">
                         <strong>ĐẶT LỊCH SỬA CHỮA</strong><br>
                         <span>RepairphoneS sẽ liên hệ với quý khách trong 15 phút</span>
