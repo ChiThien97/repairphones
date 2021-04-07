@@ -533,6 +533,15 @@ private static $installed = array (
       ),
       'reference' => '2fd2c4a77d58a4e95234c8a61c5df1f157a91bf4',
     ),
+    'nicolaslopezj/searchable' => 
+    array (
+      'pretty_version' => '1.13.0',
+      'version' => '1.13.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'b1d24ea45f75e36a11a093efa46fe44c06dd10b7',
+    ),
     'nikic/php-parser' => 
     array (
       'pretty_version' => 'v4.10.4',

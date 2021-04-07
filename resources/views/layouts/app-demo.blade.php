@@ -60,11 +60,14 @@
                                 <a class="nav-link" href="#"> Chính sách </a>
                             </li>
                         </ul>
-                        <form class="form-inline my-2 my-lg-0">
-                            @csrf
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <form class="form-inline my-2 my-lg-0" method="GET" action="{{ url('ket-qua-tim-kiem') }}">
+                           
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                            <input name="term"  class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                             <button class="form-control btn-outline-secondary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+
                         </form>
+                        
                         <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->

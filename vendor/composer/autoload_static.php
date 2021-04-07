@@ -113,6 +113,7 @@ class ComposerStaticInit0a95c6452d3f50a74d9e55730ddc3bba
         'N' => 
         array (
             'NunoMaduro\\Collision\\' => 21,
+            'Nicolaslopezj\\Searchable\\' => 25,
         ),
         'M' => 
         array (
@@ -365,6 +366,10 @@ class ComposerStaticInit0a95c6452d3f50a74d9e55730ddc3bba
         array (
             0 => __DIR__ . '/..' . '/nunomaduro/collision/src',
         ),
+        'Nicolaslopezj\\Searchable\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/nicolaslopezj/searchable/src',
+        ),
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
@@ -492,7 +497,18 @@ class ComposerStaticInit0a95c6452d3f50a74d9e55730ddc3bba
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
+        'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
+        'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
+        'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
+        'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
+        'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\DanhmucController' => __DIR__ . '/../..' . '/app/Http/Controllers/DanhmucController.php',
+        'App\\Http\\Controllers\\DatHangController' => __DIR__ . '/../..' . '/app/Http/Controllers/DatHangController.php',
+        'App\\Http\\Controllers\\DichvuController' => __DIR__ . '/../..' . '/app/Http/Controllers/DichvuController.php',
+        'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\HomeDemoController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeDemoController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
@@ -502,6 +518,8 @@ class ComposerStaticInit0a95c6452d3f50a74d9e55730ddc3bba
         'App\\Http\\Middleware\\TrustHosts' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustHosts.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Models\\Danhmuc' => __DIR__ . '/../..' . '/app/Models/Danhmuc.php',
+        'App\\Models\\Dichvu' => __DIR__ . '/../..' . '/app/Models/Dichvu.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
@@ -2874,6 +2892,7 @@ class ComposerStaticInit0a95c6452d3f50a74d9e55730ddc3bba
         'Monolog\\SignalHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/SignalHandler.php',
         'Monolog\\Test\\TestCase' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Test/TestCase.php',
         'Monolog\\Utils' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Utils.php',
+        'Nicolaslopezj\\Searchable\\SearchableTrait' => __DIR__ . '/..' . '/nicolaslopezj/searchable/src/SearchableTrait.php',
         'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
         'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider' => __DIR__ . '/..' . '/nunomaduro/collision/src/Adapters/Laravel/CollisionServiceProvider.php',
         'NunoMaduro\\Collision\\Adapters\\Laravel\\Commands\\TestCommand' => __DIR__ . '/..' . '/nunomaduro/collision/src/Adapters/Laravel/Commands/TestCommand.php',

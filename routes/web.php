@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home-demo');
 });
 
 Auth::routes();
@@ -32,3 +32,5 @@ Route::get('/phan-cong', 'HomeDemoController@phancong')->name('phan-cong');
 Route::get('/home-demo', 'HomeDemoController@index')->name('home-demo');
 
 Route::get('/hienthi/{id}','DichvuController@hienthiDsDichVu')->name('dich-vu.hienthi');
+
+Route::get('/ket-qua-tim-kiem', 'FullTextSearchController@index')->name('full-text-search');
