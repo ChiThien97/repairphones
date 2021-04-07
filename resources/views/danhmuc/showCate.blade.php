@@ -16,7 +16,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $danhmuc->name_cate }}</h5>
                             <p class="card-text">{{ $danhmuc->description }}</p>
-                            <a href="{{ route('dich-vu.index') }}">Xem danh sách dịch vụ của danh mục <i class="fas fa-arrow-right"></i></a>
+                            <a href="{{ route('dich-vu.hienthi',$danhmuc->id) }}">Xem danh sách dịch vụ của danh mục <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
                     <div class="pull-right mt-3">

@@ -8,6 +8,8 @@ use App\Models\Dichvu;
 
 use App\Models\Danhmuc;
 
+use Illuminate\Support\Facades\DB;
+
 class DichvuController extends Controller
 {
     /**
@@ -138,5 +140,25 @@ class DichvuController extends Controller
         $dichvu->delete();
         return view('dichvu.listService')
         ->with('success','Xóa dịch vụ thành công');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function hienthiDsDichVu($id)
+    {
+        //
+        $danhmuc = Danhmuc::findOrFail($id);
+        
+       // $dichvus = Dichvu::where('id_cate',$id)->first();
+
+        $dichvus = DB::table('dichvus')->where('id_cate', $id)->get();
+
+
+        return view('dichvu.hienthi')
+        ->with('dichvus',$dichvus);
     }
 }
